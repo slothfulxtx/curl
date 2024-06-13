@@ -997,6 +997,12 @@ number:
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-nonliteral"
 #endif
+
+#ifdef _MSC_VER
+#pragma  warning( push ) 
+#pragma  warning( disable: 4774 )
+#endif
+
       /* NOTE NOTE NOTE!! Not all sprintf implementations return number of
          output characters */
 #ifdef HAVE_SNPRINTF
@@ -1004,6 +1010,12 @@ number:
 #else
       (sprintf)(work, formatbuf, iptr->val.dnum);
 #endif
+
+#ifdef _MSC_VER
+#pragma  warning(  pop  ) 
+#endif
+
+
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
